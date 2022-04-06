@@ -58,15 +58,15 @@ def frame_images(frame_images_file_directory, frame_images_filename, frame_image
     for frame in Setup.frames:
         frame_image = Image.open(frame_path + Setup.frames[frame])
 
-        if frame_images_file_directory == "/Users/shashwataryal/Documents/Python/Frame Image/Images/Portrait/White Non Bordered/" and frame == "unframed":
-            frame_image = Image.open("/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Portrait/Non Bordered/White Non Bordered.png")
+        if frame_images_file_directory == "./Images/Portrait/White Non Bordered/" and frame == "unframed":
+            frame_image = Image.open("./Frame Templates/Portrait/Non Bordered/White Non Bordered.png")
 
-        if frame_images_file_directory == "/Users/shashwataryal/Documents/Python/Frame Image/Images/Landscape/White Non Bordered/" and frame == "unframed":
-            frame_image = Image.open("/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Landscape/Non Bordered/White Non Bordered.png")
+        if frame_images_file_directory == "./Images/Landscape/White Non Bordered/" and frame == "unframed":
+            frame_image = Image.open("./Frame Templates/Landscape/Non Bordered/White Non Bordered.png")
 
-        if frame_images_file_directory == "/Users/shashwataryal/Documents/Python/Frame Image/Images/Square/White Non Bordered/" and frame == "unframed":
+        if frame_images_file_directory == "./Images/Square/White Non Bordered/" and frame == "unframed":
             print('asd')
-            frame_image = Image.open("/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Square/Non Bordered/White Non Bordered.png")
+            frame_image = Image.open("./Frame Templates/Square/Non Bordered/White Non Bordered.png")
 
         # print(frame_image.height, frame_image.width)
 
@@ -104,37 +104,37 @@ def frame_images(frame_images_file_directory, frame_images_filename, frame_image
 class Setup:
     frame_folder = {
         "Landscape": {
-            "Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Landscape/Bordered/",
-            "Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Landscape/Non Bordered/",
-            "White Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Landscape/Non Bordered/",
+            "Bordered": "./Frame Templates/Landscape/Bordered/",
+            "Non Bordered": "./Frame Templates/Landscape/Non Bordered/",
+            "White Non Bordered": "./Frame Templates/Landscape/Non Bordered/",
         },
         "Portrait": {
-            "Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Portrait/Bordered/",
-            "Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Portrait/Non Bordered/",
-            "White Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Portrait/Non Bordered/",
+            "Bordered": "./Frame Templates/Portrait/Bordered/",
+            "Non Bordered": "./Frame Templates/Portrait/Non Bordered/",
+            "White Non Bordered": "./Frame Templates/Portrait/Non Bordered/",
         },
         "Square": {
-            "Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Square/Bordered/",
-            "Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Square/Non Bordered/",
-            "White Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Frame Templates/Square/Non Bordered/",
+            "Bordered": "./Frame Templates/Square/Bordered/",
+            "Non Bordered": "./Frame Templates/Square/Non Bordered/",
+            "White Non Bordered": "./Frame Templates/Square/Non Bordered/",
         }
     }
 
     images_folder = {
         "Landscape": {
-            "Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Landscape/Bordered/",
-            "Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Landscape/Non Bordered/",
-            "White Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Landscape/White Non Bordered/",
+            "Bordered": "./Images/Landscape/Bordered/",
+            "Non Bordered": "./Images/Landscape/Non Bordered/",
+            "White Non Bordered": "./Images/Landscape/White Non Bordered/",
         },
         "Portrait": {
-            "Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Portrait/Bordered/",
-            "Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Portrait/Non Bordered/",
-            "White Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Portrait/White Non Bordered/",
+            "Bordered": "./Images/Portrait/Bordered/",
+            "Non Bordered": "./Images/Portrait/Non Bordered/",
+            "White Non Bordered": "./Images/Portrait/White Non Bordered/",
         },
         "Square": {
-            "Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Square/Bordered/",
-            "Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Square/Non Bordered/",
-            "White Non Bordered": "/Users/shashwataryal/Documents/Python/Frame Image/Images/Square/White Non Bordered/",
+            "Bordered": "./Images/Square/Bordered/",
+            "Non Bordered": "./Images/Square/Non Bordered/",
+            "White Non Bordered": "./Images/Square/White Non Bordered/",
         }
     }
 
@@ -189,7 +189,7 @@ if __name__ == '__main__':
     import subprocess
     import os
 
-    path = "/Users/shashwataryal/Documents/Python/Frame Image/Output Images"
+    path = "./Output Images"
     if os.path.exists(path):
         subprocess.call(["open", path])
 
@@ -197,7 +197,9 @@ if __name__ == '__main__':
         for border in Setup.images_folder[orientation]:
             file_directory = Setup.images_folder[orientation][border]
             for filename in os.listdir(file_directory):
-                if not (filename == ".DS_Store"):
+                if (filename == ".DS_Store") or (filename == ".includefolder"):
+                    pass
+                else:
                     frame_images(file_directory, filename, orientation, border)
 
     #
